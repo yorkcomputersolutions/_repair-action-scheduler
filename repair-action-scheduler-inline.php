@@ -25,7 +25,7 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Updater class.
  */
-class Repair_Action_Scheduler {
+class Repair_Action_Scheduler_Inline {
 
 	const ACTIONS_TABLE = 'actionscheduler_actions';
 	const CLAIMS_TABLE  = 'actionscheduler_claims';
@@ -77,12 +77,10 @@ class Repair_Action_Scheduler {
 		}
 
 		echo '<div class="notice notice-info is-dismissible repair-action-scheduler-notice">';
-		if ( count( $this->notices ) == 1 ) {
-			$this->add_notice( '<em>' . __( 'No actions performed.', 'repair-action-scheduler' ) . '</em>' );
-		}
-
-		foreach ( $this->notices as $message ) {
-			echo '<p>'.$message.'</p>';
+		if ( count( $this->notices ) > 1 ) {
+			foreach ( $this->notices as $message ) {
+				echo '<p>'.$message.'</p>';
+			}
 		}
 		echo '</div>';
 
@@ -314,4 +312,4 @@ class Repair_Action_Scheduler {
 /**
  * Initialize the plugin.
  */
-$repair_action_scheduler = new Repair_Action_Scheduler();
+$repair_action_scheduler_inline = new Repair_Action_Scheduler_Inline();
