@@ -76,13 +76,13 @@ class Repair_Action_Scheduler_Inline {
 			return;
 		}
 
-		echo '<div class="notice notice-info is-dismissible repair-action-scheduler-notice">';
 		if ( count( $this->notices ) > 1 ) {
+			echo '<div class="notice notice-info is-dismissible repair-action-scheduler-notice">';
 			foreach ( $this->notices as $message ) {
 				echo '<p>'.$message.'</p>';
 			}
+			echo '</div>';
 		}
-		echo '</div>';
 
 		delete_option( 'ras_notices' );
 	}
