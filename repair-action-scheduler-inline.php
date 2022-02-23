@@ -81,14 +81,12 @@ class Repair_Action_Scheduler {
 			$this->add_notice( '<em>' . __( 'No actions performed.', 'repair-action-scheduler' ) . '</em>' );
 		}
 
-		$this->add_notice( '<em>' . __( 'The Repair Action Scheduler plugin has been automatically deactivated.', 'repair-action-scheduler' ) . '</em>' );
 		foreach ( $this->notices as $message ) {
 			echo '<p>'.$message.'</p>';
 		}
 		echo '</div>';
-		update_option( 'ras_notices', array() );
 
-		deactivate_plugins( plugin_basename( __FILE__ ) );
+		delete_option( 'ras_notices' );
 	}
 
 	/**
@@ -312,14 +310,6 @@ class Repair_Action_Scheduler {
 		}
 	}
 }
-
-/**
- * Cleanup the database after the plugin is deactivated.
- */
-function repair_action_scheduler_clean() {
-	delete_option( 'ras_notices' );
-}
-register_deactivation_hook( __FILE__, 'repair_action_scheduler_clean' );
 
 /**
  * Initialize the plugin.
